@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonComponent } from "../shared/button/button.component";
 
 @Component({
