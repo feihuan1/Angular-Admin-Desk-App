@@ -1,9 +1,10 @@
-<form>
+<form (ngSubmit)="onSubmit(titleInput.value, textInput.value)">
   <app-control lable="Title">
-    <input name="title" id="title" />
+    <!-- template variable start with # , pass in onsubmit can get it from ts file-->
+    <input name="title" id="title" #titleInput />
   </app-control>
   <app-control lable="Request">
-    <textarea name="request" id="request" rows="3"></textarea>
+    <textarea name="request" id="request" rows="3" #textInput></textarea>
   </app-control>
   <p>
     <button appButton>

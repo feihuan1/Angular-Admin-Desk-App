@@ -2,26 +2,28 @@
 <!-- <div [class]="currentStatus === 'online'" > -->
 
 <!-- also bind style( diferent way) -->
-  <div [class]="{
+<div
+  [class]="{
     status: true,
     'status-online': currentStatus === 'online',
     'status-offline': currentStatus === 'offline',
     'status-unknown': currentStatus === 'unknown',
 
   }"
-  [style.color] ="'red'"
+  [style.color]="'red'"
   [style]="{
-    'font-size':'12px',
+    'font-size': '12px',
     fontSize: '12px'
-  }" >
+  }"
+>
   @if (currentStatus === 'online') {
-    <p>Servers are online</p>
-    <p>All systems are operational.</p>
+  <p>Servers are online</p>
+  <p>All systems are operational.</p>
   } @else if (currentStatus === 'offline') {
-    <p>Servers are offline</p>
-    <p>Functionality should be restored soon.</p>
+  <p>Servers are offline</p>
+  <p>Functionality should be restored soon.</p>
   } @else {
-    <p>Server status is unknown</p>
-    <p>Fetching server status failed.</p>
+  <p>Server status is unknown</p>
+  <p>Fetching server status failed.</p>
   }
 </div>
