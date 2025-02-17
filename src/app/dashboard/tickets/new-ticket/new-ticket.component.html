@@ -1,4 +1,4 @@
-<form (ngSubmit)="onSubmit(titleInput.value, textInput.value)">
+<form (ngSubmit)="onSubmit(titleInput.value, textInput.value)" #form>
   <app-control lable="Title">
     <!-- template variable start with # , pass in onsubmit can get it from ts file-->
     <input name="title" id="title" #titleInput />
@@ -7,6 +7,7 @@
     <textarea name="request" id="request" rows="3" #textInput></textarea>
   </app-control>
   <p>
+    <!-- template variable will point to the component it selected like below -->
     <button appButton>
       Submit
       <span ngProjectAs="icon"> 🚀 </span>
