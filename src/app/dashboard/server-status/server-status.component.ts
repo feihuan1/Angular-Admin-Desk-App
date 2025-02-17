@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, DestroyRef, effect, inject, Input, OnDestroy, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -10,9 +10,11 @@ import { Component, DestroyRef, inject, Input, OnDestroy, OnInit } from '@angula
 
 // implements is not required but recommended, prevent pain in the ass typo
 export class ServerStatusComponent implements OnInit {
-  currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('online');
+
   // private interval?: ReturnType<typeof setInterval>
   private destroyRef = inject(DestroyRef)
+
   // constructor runs whenever this class is instantiated
   // constructor() {
   //   setInterval(() => {
@@ -32,17 +34,23 @@ export class ServerStatusComponent implements OnInit {
   // onInit run after initialized all input witch constructor might cause error!!!
   // life cycle hooks
   // constructor -> ngOnchanges -> ngOnInit -> ngDoCheck -> 2 branch -> afterRender
-  
+  constructor(){
+    // effect will create a subscription keep update the content in constructor
+    effect(() => {
+      // console.log(this.currentStatus())
+    })
+  }
+
   ngOnInit() {
     const interval = setInterval(() => {
       const rnd = Math.random();
 
       if (rnd < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online') ;
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 5000);
 

@@ -5,9 +5,9 @@
 <div
   [class]="{
     status: true,
-    'status-online': currentStatus === 'online',
-    'status-offline': currentStatus === 'offline',
-    'status-unknown': currentStatus === 'unknown',
+    'status-online': currentStatus() === 'online',
+    'status-offline': currentStatus()=== 'offline',
+    'status-unknown': currentStatus()=== 'unknown',
 
   }"
   [style.color]="'red'"
@@ -16,10 +16,10 @@
     fontSize: '12px'
   }"
 >
-  @if (currentStatus === 'online') {
+  @if (currentStatus() === 'online') {
   <p>Servers are online</p>
   <p>All systems are operational.</p>
-  } @else if (currentStatus === 'offline') {
+  } @else if (currentStatus() === 'offline') {
   <p>Servers are offline</p>
   <p>Functionality should be restored soon.</p>
   } @else {
